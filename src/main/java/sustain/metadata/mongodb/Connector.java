@@ -47,18 +47,30 @@ public class Connector {
         Hospital hospital = null;
         while (it.hasNext()) {
             Document resultDoc = (Document) it.next();
-            hospital.setLatitude((Double) resultDoc.get("property.LATITUDE"));
-            hospital.setLongitude((Double) resultDoc.get("property.LONGITUDE"));
-            hospital.setStatus((String) resultDoc.get("property.STATUS"));
-            hospital.setBeds((Integer) resultDoc.get("property.BEDS"));
-            hospital.setOwner((String) resultDoc.get("property.OWNER"));
+            Document propertiesDoc = (Document)resultDoc.get("properties");
+
+            hospital = new Hospital();
+            hospital.setLatitude((Double) propertiesDoc.get("LATITUDE"));
+            hospital.setLongitude((Double) propertiesDoc.get("LONGITUDE"));
+            hospital.setStatus((String) propertiesDoc.get("STATUS"));
+            hospital.setBeds((Integer) propertiesDoc.get("BEDS"));
+            hospital.setOwner((String) propertiesDoc.get("OWNER"));
 
             //generate the geohash
-            hospital.setGeoHash(Geohash.encode(hospital.getLatitude(), hospital.getLongitude(), 2));
+            hospital.setGeoHash(Geohash.encode(hospital.getLatitude(), hospital.getLongitude(), 5));
+
+//            if(hospital.getGeoHash().equals("c1") || hospital.getGeoHash().equals("c4") || hospital.getGeoHash().equals("2j"))
+//            {
+//
+//                System.out.println("GeoHash :" + hospital.getGeoHash());
+//                System.out.println(hospital.getLatitude());
+//                System.out.println(hospital.getLongitude());
+//            }
+
 
             hospitalList.add(hospital);
 
-            System.out.println(it.next());
+//            System.out.println(it.next());
         }
 
         return hospitalList;
