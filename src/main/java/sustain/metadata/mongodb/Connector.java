@@ -76,4 +76,55 @@ public class Connector {
         return hospitalList;
     }
 
+
+    public int readDamData(int[] drainArea, int minDrainArea, int[] damHeight, int minDamHeight)
+    {
+        List<Hospital> hospitalList = new ArrayList<Hospital>();
+
+        //Creating a collection object
+        MongoCollection<Document> collection = database.getCollection("dams_geo");
+        //Retrieving the documents
+        FindIterable<Document> iterDoc = collection.find();
+
+        Iterator it = iterDoc.iterator();
+
+        int collectionSize = 0;
+
+        while (it.hasNext()) {
+            collectionSize++;
+            Document resultDoc = (Document) it.next();
+            Document propertiesDoc = (Document)resultDoc.get("properties");
+
+            double drainAreaVal;
+            if(propertiesDoc.get("DRAIN_AREA") instanceof Integer)
+            {
+                int drainAreaValInt = (Integer) propertiesDoc.get("DRAIN_AREA");
+                drainAreaVal = drainAreaValInt;
+            }
+            else
+            {
+                drainAreaVal = (Double)propertiesDoc.get("DRAIN_AREA");
+            }
+
+            double damHeightVal;
+            if(propertiesDoc.get("DAM_HEIGHT") instanceof Integer)
+            {
+                int damHeightValInt = (Integer) propertiesDoc.get("DAM_HEIGHT");
+                damHeightVal = damHeightValInt;
+            }
+            else
+            {
+                damHeightVal = (Double) propertiesDoc.get("DAM_HEIGHT");
+            }
+
+
+            int idx1= (int)Math.floor(drainAreaVal) - minDrainArea;
+            drainArea[idx1] += 1;
+
+            int idx2 = (int)Math.floor(damHeightVal) - minDamHeight;
+            damHeight[idx2] += 1;
+
+        }
+        return collectionSize;
+    }
 }
