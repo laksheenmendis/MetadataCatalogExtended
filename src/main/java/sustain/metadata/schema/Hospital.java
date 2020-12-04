@@ -36,7 +36,7 @@ public class Hospital {
 
     public String getGeoHash(int precision) {
 
-        return Geohash.encode(this.getLatitude(), this.getLongitude(), 5);
+        return Geohash.encode(this.getLatitude(), this.getLongitude(), precision);
     }
 
     public void setGeoHash(String geoHash) {
