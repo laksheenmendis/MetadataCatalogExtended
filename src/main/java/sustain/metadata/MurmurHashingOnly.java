@@ -15,9 +15,9 @@ import java.util.List;
  */
 public class MurmurHashingOnly {
 
-    static final int ARRAY_SIZE = 3001;
+    static final int ARRAY_SIZE = 5009;
     static final int noOfHashFunctions = 5;
-    static final int noOfCharsInGeoHash = 2;
+    static final int noOfCharsInGeoHash = 5;
 
     public static void main(String[] args) {
         try {
@@ -97,24 +97,24 @@ public class MurmurHashingOnly {
 
     private static void countEntries(List<boolean[]> bloomfilters)
     {
-
-        int count=0;
-
+        int sum =0;
         for (int i1 = 0; i1 < bloomfilters.size(); i1++) {
             boolean[] b = bloomfilters.get(i1);
             int i=0;
-
+            int count = 0;
             while( i<ARRAY_SIZE )
             {
                 if(b[i])
                     count++;
                 i++;
             }
-            System.out.println(i1 + " " + count);
+
+            sum += count;
+//            System.out.println(i1 + " " + count);
         }
 
         // print out the % usage out of all x number of arrays (x is equal to the noOfHashFunctions)
-        System.out.println((count*100)/(ARRAY_SIZE*noOfHashFunctions));
+        System.out.println( String.format("%.2f",(double) (sum*100)/(ARRAY_SIZE*noOfHashFunctions)) + "%");
     }
 
     private static void fillBloomFilters(String hashingString, int noOfArrays, List<boolean[]> bloomFilters)
