@@ -4,6 +4,8 @@ package sustain.metadata.schema;
  * Created by laksheenmendis on 11/27/20 at 7:21 PM
  */
 
+import sustain.metadata.utility.Geohash;
+
 /**
  * 7596 entries in the collection
  */
@@ -32,8 +34,9 @@ public class Hospital {
         this.longitude = longitude;
     }
 
-    public String getGeoHash() {
-        return geoHash;
+    public String getGeoHash(int precision) {
+
+        return Geohash.encode(this.getLatitude(), this.getLongitude(), 5);
     }
 
     public void setGeoHash(String geoHash) {

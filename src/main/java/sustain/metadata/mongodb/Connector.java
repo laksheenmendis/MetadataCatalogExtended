@@ -56,8 +56,7 @@ public class Connector {
             hospital.setBeds((Integer) propertiesDoc.get("BEDS"));
             hospital.setOwner((String) propertiesDoc.get("OWNER"));
 
-            //generate the geohash
-            hospital.setGeoHash(Geohash.encode(hospital.getLatitude(), hospital.getLongitude(), 5));
+
 
 //            if(hospital.getGeoHash().equals("c1") || hospital.getGeoHash().equals("c4") || hospital.getGeoHash().equals("2j"))
 //            {

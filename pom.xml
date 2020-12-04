@@ -20,5 +20,32 @@
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.indeed/util-core -->
+        <dependency>
+            <groupId>com.indeed</groupId>
+            <artifactId>util-core</artifactId>
+            <version>1.0.35</version>
+        </dependency>
+        <dependency>
+            <groupId>net.openhft</groupId>
+            <artifactId>zero-allocation-hashing</artifactId>
+            <version>0.11</version>
+        </dependency>
+        <!--City Hash -->
+        <!-- https://mvnrepository.com/artifact/org.epics/epics-pvaccess -->
+        <dependency>
+            <groupId>org.epics</groupId>
+            <artifactId>epics-pvaccess</artifactId>
+            <version>5.0.0</version>
+        </dependency>
+        <!--Google Guava, has many hash implementations-->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>27.1-jre</version>
+        </dependency>
+        <!-- Thanks for using https://jar-download.com -->
+
+
     </dependencies>
 </project>

@@ -15,6 +15,7 @@ public class GenerateBloomFilters {
 
     static Set<Integer> geohashes = new HashSet<Integer>();
     static final int ARRAY_SIZE = 3001;
+    static final int noOfCharsInGeoHash = 2;
 
     public static void main(String[] args) {
 
@@ -48,14 +49,14 @@ public class GenerateBloomFilters {
 
             for (Hospital hospital : hospitals) {
                 try {
-                    bf1[hash(hospital.getGeoHash())] = true;
-                    bf2[hash(hospital.getGeoHash() + "BEDS" + hospital.getBedsString())] = true;
-                    bf3[hash(hospital.getGeoHash() + "BEDS" + hospital.getBedsString() + "STATUS" + hospital.getStatus())] = true;
-                    bf4[hash(hospital.getGeoHash() + "BEDS" + hospital.getBedsString() + "OWNER" + hospital.getOwner() + "STATUS" + hospital.getStatus())] = true;
-                    bf5[hash(hospital.getGeoHash() + "OWNER" + hospital.getOwner())] = true;
-                    bf6[hash(hospital.getGeoHash() + "OWNER" + hospital.getOwner() + "STATUS" + hospital.getStatus())] = true;
-                    bf7[hash(hospital.getGeoHash() + "BEDS" + hospital.getBedsString() + "OWNER" + hospital.getOwner() )] = true;
-                    bf8[hash(hospital.getGeoHash() + "STATUS" + hospital.getStatus())] = true;
+                    bf1[hash(hospital.getGeoHash(noOfCharsInGeoHash))] = true;
+                    bf2[hash(hospital.getGeoHash(noOfCharsInGeoHash) + "BEDS" + hospital.getBedsString())] = true;
+                    bf3[hash(hospital.getGeoHash(noOfCharsInGeoHash) + "BEDS" + hospital.getBedsString() + "STATUS" + hospital.getStatus())] = true;
+                    bf4[hash(hospital.getGeoHash(noOfCharsInGeoHash) + "BEDS" + hospital.getBedsString() + "OWNER" + hospital.getOwner() + "STATUS" + hospital.getStatus())] = true;
+                    bf5[hash(hospital.getGeoHash(noOfCharsInGeoHash) + "OWNER" + hospital.getOwner())] = true;
+                    bf6[hash(hospital.getGeoHash(noOfCharsInGeoHash) + "OWNER" + hospital.getOwner() + "STATUS" + hospital.getStatus())] = true;
+                    bf7[hash(hospital.getGeoHash(noOfCharsInGeoHash) + "BEDS" + hospital.getBedsString() + "OWNER" + hospital.getOwner() )] = true;
+                    bf8[hash(hospital.getGeoHash(noOfCharsInGeoHash) + "STATUS" + hospital.getStatus())] = true;
 
                 } catch (NullPointerException e) {
 
